@@ -1,0 +1,15 @@
+{
+  "debug": true,
+  "clientId": "GeniusCentral-Test",
+  "clientSecret": "4F35C24A-32CD-43E3-B9E8-E2A7CE995945",
+  "storeId": 100331,
+  "identityAPIUri": "https://idsrv.dev.geniuscentral.com/connect/token",
+  "orderingAPIUri": "https://orderingap.dev.geniuscentral.com/",
+  "originXMLPath": "OriginXML\\",
+  "originJSONPath": "OriginJSON\\",
+  "historyXMLPath": "HistoryXML\\",
+  "historyJSONPath": "HistoryJSON\\",
+  "logFile": "LogFile\\",
+  "ordersRetrievedPath": "OrdersRetrieved\\",
+  "invoicesRetrievedPath": "InvoicesRetrieved\\"
+}
