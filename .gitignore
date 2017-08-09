@@ -1,0 +1,21 @@
+## Downloaded Files
+
+
+OrdersRetrieved
+/
+InvoicesRetrieved/ 
+
+## History Files
+
+
+HistoryJSON
+/
+HistoryXML
+/
+
+## Origin Files
+OriginXML/
+OriginJSON/
+
+## Log Files
+POS/LogFile/
