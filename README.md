@@ -12,20 +12,20 @@ POS Starter Scripts for integration with Genius Central Ordering Services
 2. **Sending TEST Orders**
     * Open a PowerShell window
     * Run `.\SendOrders true`
-        * The `true` flag indicates that we are testing
-    * On first run, you should see messages about folders being created
-    * Open the LogFiles folder and confirm that you have a LogFile and that the LogFile indicates that Orders were sent
+        * The `true` flag indicates that we are in test mode
+    * On first run, you should see folder created messages
+    * Open the LogFiles folder and confirm that you have a log file and that the log file indicates that Orders were sent
 
 3. **Getting Orders using TEST account**
     * Run `.\GetOrders`
-    * On first run, you should see messages about folders being created
-    * Open the LogFiles folder and confirm that the LogFile indicates that we attempted to Get Orders
+    * On first run, you should see folder created messages
+    * Open the LogFiles folder and confirm that the log file indicates that we attempted to Get Orders
     * There may not actually be any orders to download
 
 4. **Getting Invoices using TEST account**
     * Run `.\GetInvoices`
-    * On first run, you should see messages about folders being created
-    * Open the LogFiles folder and confirm that the LogFile indicates that we attempted to Get Invoices
+    * On first run, you should see folder created messages
+    * Open the LogFiles folder and confirm that the log file indicates that we attempted to Get Invoices
     * There may not actually be any invoices to download
 
 5. **Change the configuration file to match your unique configuration**
