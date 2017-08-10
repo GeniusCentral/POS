@@ -27,7 +27,7 @@ if($debug){
 Try{
     $result = Invoke-RestMethod -Method POST -URI $uri -body $body -Header $header
     if($debug){ 
-     Add-Content $logFile "Result from Order Pos:t"         
+     Add-Content $logFile "Result from Order Post"         
        $message = ConvertTo-Json -InputObject $result     
        Add-Content $logFile $message        
     } 

@@ -3,13 +3,14 @@ Param(
     [string]$orderingAPIUri,
     [string]$logFile,
     [string]$orderAcks,
+    [int]$storeId,
     [bool]$debug
 
 )
 
 Try {
     #call API to Put Acknowledge order
-    $uri = $orderingAPIUri + "orders"
+    $uri = $orderingAPIUri + "stores/" + $storeId + "/orders"
     $body = $orderAcks;
     $header = @{"Authorization" = "Bearer $accessToken"; "Accept" = "application/json"; "Content-Type" = "application/json"}
     Invoke-RestMethod -Method PATCH -URI $uri -body $body -Header $header

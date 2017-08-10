@@ -43,7 +43,7 @@ Try{
                 $orderAcks.orders =$orders
                 $orderAcks = ConvertTo-Json -InputObject $orderAcks
                 #Acknowledge Orders with the API
-                .\scripts\PutOrderAcknowledgement.ps1 $accessToken $config.orderingAPIUri $logFile $orderAcks $config.debug
+                .\scripts\PatchOrderAcknowledgement.ps1 $accessToken $config.orderingAPIUri $logFile $orderAcks $config.debug
             }
         } While ($orderFile.length -gt 9)
     }  

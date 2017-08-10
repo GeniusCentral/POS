@@ -10,7 +10,7 @@ Param(
 
 Try{
     $header = @{"Authorization" = "Bearer $accessToken"; "Accept" = "application/json"; "Content-Type" = "application/json"}
-    $uri = $orderingAPIUri +  "stores/" + $storeId + "/orders";
+    $uri = $orderingAPIUri +  "stores/" + $storeId + "/orders" + "?previouslyExportedOrders=false";
     $message = "Accessing API - " + $uri
     Add-content $logFile $message
     $result = Invoke-RestMethod -Method GET -URI $uri -Header $header

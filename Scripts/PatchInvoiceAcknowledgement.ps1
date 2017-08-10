@@ -3,13 +3,14 @@ Param(
     [string]$orderingAPIUri,
     [string]$logFile,
     [string]$orderAcks,
+    [int]$storeId,
     [bool]$debug
 
 )
 
 Try {
     #call API to Patch Acknowledge invoice
-    $uri = $orderingAPIUri + "invoices"
+    $uri = $orderingAPIUri + "stores/" + $storeId + "/invoices"
     $body = $invoiceAcks;
     $header = @{"Authorization" = "Bearer $accessToken"; "Accept" = "application/json"; "Content-Type" = "application/json"}
 
