@@ -31,7 +31,7 @@ $test = $test.ToLower()
 Try{
 
     #Get the access token from our Authentication Server
-    $accessToken = .\scripts\GetAccessToken.ps1 $config.clientSecret $config.identityAPIUri $logFile $config.debug
+    $accessToken = .\scripts\GetAccessToken.ps1 $config.clientSecret $config.identityAPIUri  $config.clientId $logFile $config.debug
     if ($accessToken){
         #Read in all files in the xml source folder
         #Convert them from xml to json docuemnts and save in json source folder

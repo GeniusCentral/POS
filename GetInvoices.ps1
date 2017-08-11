@@ -20,7 +20,7 @@ Add-Content $logFile $message
 Try{
 
     #Get the access token from our Authentication Server
-    $accessToken = .\scripts\GetAccessToken.ps1 $config.clientSecret $config.identityAPIUri $logFile $config.debug
+    $accessToken = .\scripts\GetAccessToken.ps1 $config.clientSecret $config.identityAPIUri $config.clientId $logFile $config.debug
 
     If ($accessToken){
   
