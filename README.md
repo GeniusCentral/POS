@@ -38,10 +38,11 @@ These scripts are intended to run in PowerShell on Windows
 
 7. **Complete Setup with Genius Central**
     * Set debug=false in .config
+    * Set outputToConole=false in .config if that is your preference
     * Test with your specific configuration
     * Test in Production with your specific configuration
 
 
-For support, please contact dcooper@geniuscentral.com or 727.209.2237
+
 
 

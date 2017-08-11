@@ -1,5 +1,6 @@
 {
   "debug": true,
+  "outputToConsole": true,
   "clientId": "GeniusCentral-Test",
   "clientSecret": "4F35C24A-32CD-43E3-B9E8-E2A7CE995945",
   "storeId": 100331,

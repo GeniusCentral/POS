@@ -23,10 +23,10 @@ Try{
     $accessToken = .\scripts\GetAccessToken.ps1 $config.clientSecret $config.identityAPIUri $logFile $config.debug
 
     If ($accessToken){
-  
+
         #Get the Invoices from the API
-        $invoiceFile = .\scripts\GetInvoicesFromAPI.ps1 $accessToken $config.orderingAPIUri $logFile $config.invoicesRetrievedPath $config.storeId $config.debug
-        
+        $invoiceFile = .\scripts\GetInvoicesFromAPI.ps1 $accessToken $config.orderingAPIUri $logFile $config.invoicesRetrievedPath $config.storeId $config.debug $config.outputToConsole
+
         #Loop thru successfully downloaded invoices and build JSON file used to acknowledge
         $invoiceAcks = @{Invoices=@{}}
         $invoices = @()
@@ -35,7 +35,7 @@ Try{
             ForEach ($invoice In $invoiceFile)
             {
                 $message = "Invoice to acknowledge - " +  $invoice.header.oid
-                Add-Content $logFile $message   
+                Add-Content $logFile $message
                 $invoices += @{oid = $invoice.header.oid}
             }
             $invoiceAcks.invoices =$invoices
@@ -43,17 +43,17 @@ Try{
             #Acknowledge Invoice with the API
             .\scripts\PatchInvoiceAcknowledgement.ps1 $accessToken $config.orderingAPIUri $logFile $invoiceAcks $config.debug
         }
-       
-    }  
-    
+
+    }
+
     $message = "End of running script retrieve invoices - " +  (Get-Date).toString("u")
-    Add-Content $logFile $message   
+    Add-Content $logFile $message
 }
 Catch{
 
     $message = "Retrieve Invoices Error Message: " + $_.Exception.Message
     Add-Content $logFile $message
     $message = "Error occurred in line " +  $_.InvocationInfo.ScriptLineNumber
-    Add-Content $logFile $message      
-    Throw $_.Exception    
+    Add-Content $logFile $message
+    Throw $_.Exception
 }

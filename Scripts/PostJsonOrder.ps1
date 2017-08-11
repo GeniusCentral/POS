@@ -3,8 +3,8 @@ Param(
   [string]$accessToken,
   [string]$orderingAPIUri,
   [string]$logFile,
-  [bool]$debug
-
+  [bool]$debug,
+  [bool]$outputToConsole
 )
 
 $fileFound = Test-Path  $orderFileLocation;
@@ -13,28 +13,30 @@ if(-not $fileFound){
     exit;
 }
 
-
 #call API to POST order
 $uri = $orderingAPIUri +  "stores/" + $config.storeId + "/orders";
 $body = Get-Content $orderFileLocation;
 $header = @{"Authorization" = "Bearer $accessToken"; "Accept" = "application/json"; "Content-Type" = "application/json"}
 
 if($debug){
-    Add-Content $logFile "postOrderUri: $uri"      
-    Add-Content $logFile "postOrderBody: $body"    
-}   
+    Add-Content $logFile "postOrderUri: $uri"
+    Add-Content $logFile "postOrderBody: $body"
+}
+if($outputToConsole) {
+    Write-Host "sending order to: $uri"
+}
 
 Try{
     $result = Invoke-RestMethod -Method POST -URI $uri -body $body -Header $header
-    if($debug){ 
-     Add-Content $logFile "Result from Order Post"         
-       $message = ConvertTo-Json -InputObject $result     
-       Add-Content $logFile $message        
-    } 
+    if($debug){
+        Add-Content $logFile "Result from Order Post"
+        $message = ConvertTo-Json -InputObject $result
+        Add-Content $logFile $message
+    }
 }
 Catch{
-    Add-Content $logFile "PostJsonOrder Error Message: $_.Exception.Message"  
+    Add-Content $logFile "PostJsonOrder Error Message: $_.Exception.Message"
     $message = "Error occurred in line " +  $_.InvocationInfo.ScriptLineNumber
-    Add-Content $logFile $message  
+    Add-Content $logFile $message
     Throw  $_.Exception
 }
