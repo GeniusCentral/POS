@@ -9,7 +9,7 @@ If(!(Test-Path $config.logFile)){
 }
 If(!(Test-Path $config.ordersRetrievedPath)){
     New-Item $config.ordersRetrievedPath -type directory
-}   
+}
 
 #Created a Log File
 $logFile = $config.logFile + "Log - " +  (Get-Date).toString("yyyy-MM-dd") + ".txt"
@@ -29,8 +29,8 @@ Try{
         Do
         {
             #Get the Orders from the API
-            $orderFile = .\scripts\GetOrdersFromAPI.ps1 $accessToken $config.orderingAPIUri $logFile $config.ordersRetrievedPath $config.storeId $config.debug
-            
+            $orderFile = .\scripts\GetOrdersFromAPI.ps1 $accessToken $config.orderingAPIUri $logFile $config.ordersRetrievedPath $config.storeId $config.debug $config.outputToConsole
+
             #Loop thru successfully downloaded orders and build JSON file used to acknowledge
             $orderAcks = @{Orders=@{}}
             $orders = @()
@@ -46,17 +46,17 @@ Try{
                 .\scripts\PatchOrderAcknowledgement.ps1 $accessToken $config.orderingAPIUri $logFile $orderAcks $config.debug
             }
         } While ($orderFile.length -gt 9)
-    }  
-    
+    }
+
     $message = "End of running retrieve orders script - " +  (Get-Date).toString("u")
-    Add-Content $logFile $message   
+    Add-Content $logFile $message
 }
 Catch{
 
     $message = "Retrieve Orders Error Message: " + $_.Exception.Message
     Add-Content $logFile $message
     $message = "Error occurred in line " +  $_.InvocationInfo.ScriptLineNumber
-    Add-Content $logFile $message      
-    Throw $_.Exception    
+    Add-Content $logFile $message
+    Throw $_.Exception
 
 }

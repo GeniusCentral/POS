@@ -41,11 +41,15 @@ Try{
         Foreach-Object {
             $message = "Converting xml file  " + $_.FullName + " to JSON"
             Add-content $logFile $message
-            $jsonFile = .\scripts\OrderXMLToJSON.ps1 $_.FullName $config.originJSONPath $logFile
+            if($config.outputToConsole) {
+                Write-Host $message
+            }
+
+            $jsonFile = .\scripts\OrderXMLToJSON.ps1 $_.FullName $config.originJSONPath $logFile $config.outputToConsole
 
             If ($jsonFile){
                 #Post Order to API
-                .\scripts\PostJsonOrder.ps1 $jsonFile $accessToken $config.orderingAPIUri $logFile $config.debug
+                .\scripts\PostJsonOrder.ps1 $jsonFile $accessToken $config.orderingAPIUri $logFile $config.debug $config.outputToConsole
 
                 If ($test -ne 'true'){
                     #Move temproary files
@@ -56,6 +60,9 @@ Try{
                 }
             }
 
+            if($config.outputToConsole) {
+                Write-Host " "
+            }
         }
     }
     $message = "End of running send orders script - " +  (Get-Date).toString("u")

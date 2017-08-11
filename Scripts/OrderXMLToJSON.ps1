@@ -1,7 +1,8 @@
 Param(
   [string]$sourceOrderXmlFilePath,
   [string]$destinationPath,
-  [string]$logFile
+  [string]$logFile,
+  [bool]$outputToConsole
 )
 
 
@@ -12,11 +13,11 @@ if(-not $fileFound){
 }
 
 Try{
-  
+
     $orderXml = [XML](Get-Content -Path $sourceOrderXmlFilePath)
 
     $orderHeader = $orderXml.Envelope.Body.ProcessOrder.sOrderXmlDoc.OrderHeader;
- 
+
     $headerHash = @{
         StoreID = $orderHeader.StoreID;
         StoreName = $orderHeader.StoreName;
@@ -62,14 +63,18 @@ Try{
     $outFileName = $outFileName + ".json";
 
     $jsonOutFilePath = $destinationPath + $outFileName
+    $message = "Output file: $jsonOutFilePath"
+    Add-Content $logFile $message
+    if($outputToConsole) {
+        Write-Host $message
+    }
 
-    Add-Content $logFile "Output file: $jsonOutFilePath"
     ConvertTo-Json -InputObject $orderHash | Out-File $jsonOutFilePath  -ErrorAction Stop
     return $jsonOutFilePath
 
 }
 catch{
-    Add-Content $logFile "OrderXMLtoJSON Error Message: $_.Exception.Message"   
+    Add-Content $logFile "OrderXMLtoJSON Error Message: $_.Exception.Message"
     $message = "Error occurred in line " +  $_.InvocationInfo.ScriptLineNumber
     Add-Content $logFile $message
     Throw  $_.Exception
