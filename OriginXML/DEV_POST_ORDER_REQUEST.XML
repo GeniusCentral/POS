@@ -7,9 +7,9 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
       <sPassword>password</sPassword>
       <sOrderXmlDoc>
       
-      <OrderHeader StoreID="100331" StoreName=""  UniqueOrderID="{9A400A0A-C36E-4C51-8155-12345FB889AB}" DateCreated="2017-01-21T09:42:50" 
-      	SupplierID="100863" SupplierName="LN Test Supplier" OrderTotal="25.16" MessageToSupplier="" StorePONumber="00012345" 
-      	AccountNumber="57131" OrderSource="1300" OrderStatus="1" ShipToName="" ShipToAddress1="" ShipToAddress2=""
+      <OrderHeader StoreID="100331" StoreName="POS Test Store"  UniqueOrderID="{9A400A0A-C36E-4C51-8155-12345FB889AB}" DateCreated="2017-01-21T09:42:50" 
+      	SupplierID="100863" SupplierName="POS LN Test Supplier" OrderTotal="25.16" MessageToSupplier="" StorePONumber="00012345" 
+      	AccountNumber="57131" OrderSource="1950" OrderStatus="20" ShipToName="" ShipToAddress1="" ShipToAddress2=""
          ShipToCity="" ShipToState="" ShipToPostalCode="" ValidateItemData="0">
          
          <OrderDetail GTIN="678523375488" SupplierSKU="0782615" Quantity="1" Cost="25.16" Front="0" Back="0" ItemDescription="MUFFIN ENGLISH 16.9 OZ" PagePartition="1" />
