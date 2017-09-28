@@ -12,5 +12,6 @@
   "historyJSONPath": "HistoryJSON\\",
   "logFile": "LogFile\\",
   "ordersRetrievedPath": "OrdersRetrieved\\",
-  "invoicesRetrievedPath": "InvoicesRetrieved\\"
+  "invoicesRetrievedPath": "InvoicesRetrieved\\",
+  "useStoreMap": false
 }

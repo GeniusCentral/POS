@@ -12,3 +12,7 @@ OriginJSON/
 
 ## Log Files
 LogFile/
+
+##Customer Specific Config Files
+MothersConfig.json
+MothersstoreMap.json

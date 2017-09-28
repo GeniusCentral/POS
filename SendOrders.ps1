@@ -4,6 +4,8 @@ Param(
 
 Clear-Host
 
+[System.Object] $storeMap;
+
 #Read in configuration file
 $config = Get-Content -Raw -Path "config.json" | ConvertFrom-Json
 
@@ -19,6 +21,10 @@ If(!(Test-Path $config.historyXMLPath)){
 }
 If(!(Test-Path $config.historyJSONPath)){
     New-Item $config.historyJSONPath -type directory
+}
+
+if ($config.useStoreMap){
+    $storeMap = Get-Content -Raw -Path "storeMap.json" | ConvertFrom-Json
 }
 
 $logFile = $config.logFile + "Log - " +  (Get-Date).toString("yyyy-MM-dd") + ".txt"
@@ -45,7 +51,7 @@ Try{
                 Write-Host $message
             }
 
-            $jsonFile = .\scripts\OrderXMLToJSON.ps1 $_.FullName $config.originJSONPath $logFile $config.outputToConsole
+            $jsonFile = .\scripts\OrderXMLToJSON.ps1 $_.FullName $config.originJSONPath $logFile $config.outputToConsole $config.useStoreMap $storeMap
 
             If ($jsonFile){
                 #Post Order to API
