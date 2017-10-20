@@ -30,6 +30,12 @@ Try{
         {
             #Get the Orders from the API
             $orderFile = .\scripts\GetOrdersFromAPI.ps1 $accessToken $config.orderingAPIUri $logFile $config.ordersRetrievedPath $config.storeId $config.debug $config.outputToConsole
+            if ($config.OrderExportFileType -eq "delimited"){
+                .\scripts\DelimitedOrderFormat.ps1 $orderFile $config.ordersRetrievedPath $config.delimiter $logFile
+            }
+            else{
+                .\scripts\JsonOrderFormat.ps1 $orderFile $config.ordersRetrievedPath $logFile
+            }
 
             #Loop thru successfully downloaded orders and build JSON file used to acknowledge
             $orderAcks = @{Orders=@{}}

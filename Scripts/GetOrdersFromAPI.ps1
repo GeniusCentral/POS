@@ -24,15 +24,6 @@ Try{
     if($outputToConsole) {
         Write-Host $message
     }
-
-    If($result.orders.length -gt 0){
-        $fileName = New-Guid
-        $pathFile = $orderHistoryPath + $fileName + ".json"
-        $result.orders | ConvertTo-Json | Out-File $pathFile -ErrorAction Stop
-        $message = "Writing Downloaded Orders to File: " + $pathFile
-        Add-content $logFile $message
-    }
-
     Return $result.orders
 }
 Catch{

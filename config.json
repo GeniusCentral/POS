@@ -13,5 +13,7 @@
   "logFile": "LogFile\\",
   "ordersRetrievedPath": "OrdersRetrieved\\",
   "invoicesRetrievedPath": "InvoicesRetrieved\\",
-  "useStoreMap": false
+  "useStoreMap": false,
+  "OrderExportFileType": "delimited",
+  "delimiter": "|"
 }
