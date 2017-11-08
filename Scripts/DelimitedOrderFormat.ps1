@@ -13,7 +13,7 @@ Try{
     ForEach ($order In $orderFile)
     {
         Add-content $pathFile $orderHeaderLine
-        $orderLine += $order.header.orderID.ToString() + $d
+        $orderLine = $order.header.orderID.ToString() + $d
         $orderLine +=  $order.header.storeID.ToString() +  $d
         $orderLine +=  $order.header.storeName +  $d
         $orderLine +=  $order.header.uniqueOrderID + $d
