@@ -61,9 +61,15 @@ Try{
     $detailsHash = New-Object System.Collections.Generic.List[System.Object];
 
     foreach($detail in $orderDetail){
+
+        #UPC's have leading 0's and are missing check digits
+        #SKU's have leading 0's
+        $upc = .\scripts\UPCStripOffLeadingZeros.ps1 $detail.GTIN $false
+        $upc = .\scripts\CalculateCheckDigit.ps1 $upc
+        
         $orderDetailItem = @{
-            GTIN = $detail.GTIN;
-            SupplierSKU = $detail.SupplierSKU;
+            GTIN = $upc;
+            SupplierSKU = $detail.SupplierSKU.TrimStart("0")
             Quantity = $detail.Quantity;
             Cost = $detail.Cost;
             Front = $detail.Front;
