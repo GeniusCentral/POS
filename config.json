@@ -6,6 +6,7 @@
   "storeId": 100331,
   "identityAPIUri": "https://idsrv.dev.geniuscentral.com/connect/token",
   "orderingAPIUri": "https://orderingapi.dev.geniuscentral.com/",
+  "posAPIUri": "https://posapi.dev.geniuscentral.com/",
   "originXMLPath": "OriginXML\\",
   "originJSONPath": "OriginJSON\\",
   "historyXMLPath": "HistoryXML\\",
@@ -13,6 +14,7 @@
   "logFile": "LogFile\\",
   "ordersRetrievedPath": "OrdersRetrieved\\",
   "invoicesRetrievedPath": "InvoicesRetrieved\\",
+  "catalogsRetrievedPath": "CatalogsRetrieved\\",
   "useStoreMap": false,
   "OrderExportFileType": "delimited",
   "delimiter": "|"
