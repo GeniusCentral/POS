@@ -15,11 +15,17 @@ If(!(Test-Path $config.catalogsRetrievedPath)){
     New-Item $config.catalogsRetrievedPath -type directory
 }
 
-#Created a Log File
-$logFile = $config.logFile + "Log - " +  (Get-Date).toString("yyyy-MM-dd") + ".txt"
-Add-Content $logFile " "
-$message = "Start of running retrieve orders script - " +  (Get-Date).toString("u")
-Add-Content $logFile " "
+#Log File Name
+$logFile = $config.logFile + "GetCatalog " +  (Get-Date).toString("yyyy-MM-dd") + ".log"
+
+if(!$vendorId){
+	$message = "vendorId parameter is required"
+	Write-Host $message
+	Add-Content $logFile $message
+	Return;
+}
+
+$message = (Get-Date).toString() + " Start of get catalog script ($vendorId) "
 Add-Content $logFile $message
 
 Try{
@@ -33,7 +39,7 @@ Try{
 		.\scripts\JsonCatalogFormat.ps1 $catalogFile $vendorId $config.catalogsRetrievedPath $logFile
     }
 
-    $message = "End of retrieving catalog script - " +  (Get-Date).toString("u")
+	$message = (Get-Date).toString() + " End of get catalog script ($vendorId) "
     Add-Content $logFile $message
 }
 Catch{
