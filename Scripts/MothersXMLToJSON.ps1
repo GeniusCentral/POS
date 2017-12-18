@@ -66,7 +66,13 @@ Try{
         #SKU's have leading 0's
         $upc = .\scripts\UPCStripOffLeadingZeros.ps1 $detail.GTIN $false
         $upc = .\scripts\CalculateCheckDigit.ps1 $upc
-        
+        if ($detail.OrderedBy.ToLower() -eq "case"){
+            $uom = "CS"
+        }
+        else{
+            $uom = "EA"
+        }
+
         $orderDetailItem = @{
             GTIN = $upc;
             SupplierSKU = $detail.SupplierSKU.TrimStart("0")
@@ -76,6 +82,8 @@ Try{
             Back = $detail.Back;
             ItemDescription = $detail.ItemDescription;
             PagePartition = $detail.PagePartition;
+            CasePackSize = $detail.CasePack;
+            UOM = $uom;
         }
         $detailsHash.Add($orderDetailItem);
     }
