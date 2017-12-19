@@ -35,8 +35,22 @@ Try{
 
     If ($accessToken){
 		#Get the Catalog from the API
-		$catalogFile = .\scripts\GetCatalogFromAPI.ps1 $accessToken $config.posAPIUri $logFile $config.catalogsRetrievedPath $vendorId $config.debug $config.outputToConsole
+        $startTime = Get-Date
+        $catalogFile = .\scripts\GetCatalogFromAPI.ps1 $accessToken $config.posAPIUri $logFile $config.catalogsRetrievedPath $vendorId $config.debug $config.outputToConsole
+        $finishTime = Get-Date
+        $durationDownload = $finishTime - $startTime
+
+        #Save the file to disk
+        $startTime = Get-Date
 		.\scripts\JsonCatalogFormat.ps1 $catalogFile $vendorId $config.catalogsRetrievedPath $logFile
+        $finishTime = Get-Date
+        $durationSaveFile = $finishTime - $startTime
+
+        $message = "Duration, download:" + $durationDownload + " | save file: " + $durationSaveFile
+        Add-content $logFile $message
+        if($config.outputToConsole) {
+            Write-Host $message
+        }
     }
 
 	$message = (Get-Date).toString() + " End of get catalog script ($vendorId) "

@@ -43,9 +43,23 @@ Try{
     $accessToken = .\scripts\GetAccessToken.ps1 $config.clientSecret $config.identityAPIUri $config.clientId $logFile $config.debug
 
     If ($accessToken){
-		#Get the Catalog from the API
+        #Get the Catalog from the API
+        $startTime = Get-Date
 		$catalogFile = .\scripts\GetCatalogUpdatesFromAPI.ps1 $accessToken $config.posAPIUri $logFile $config.catalogsRetrievedPath $vendorId $updatesSinceDate $config.debug $config.outputToConsole
-		.\scripts\JsonCatalogUpdatesFormat.ps1 $catalogFile $vendorId $updatesSinceDate $config.catalogsRetrievedPath $logFile
+        $finishTime = Get-Date
+        $durationDownload = $finishTime - $startTime
+
+        #Save the file to disk
+        $startTime = Get-Date
+        .\scripts\JsonCatalogUpdatesFormat.ps1 $catalogFile $vendorId $updatesSinceDate $config.catalogsRetrievedPath $logFile
+        $finishTime = Get-Date
+        $durationSaveFile = $finishTime - $startTime
+
+        $message = "Duration, download:" + $durationDownload + " | save file: " + $durationSaveFile
+        Add-content $logFile $message
+        if($config.outputToConsole) {
+            Write-Host $message
+        }
     }
 
 	$message = (Get-Date).toString() + " End of get catalog updates script ($vendorId) ($updatesSinceDate)"
