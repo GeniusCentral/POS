@@ -73,9 +73,17 @@ Try{
             $uom = "EA"
         }
 
+
+        if ($detail.SupplierSKU){
+            $sku = $detail.SupplierSKU
+        }
+        else{
+            $sku = "NA"
+        }
+
         $orderDetailItem = @{
             GTIN = $upc;
-            SupplierSKU = $detail.SupplierSKU.TrimStart("0")
+            SupplierSKU = $sku
             Quantity = $detail.Quantity;
             Cost = $detail.Cost;
             Front = $detail.Front;

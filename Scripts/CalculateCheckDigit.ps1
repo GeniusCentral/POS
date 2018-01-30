@@ -2,14 +2,13 @@ Param(
     [string]$upc
 )
 
-
 if ($upc.length -eq 11)
 {
-    $upcArray = $upc.ToCharArray()  
+    $upcArray = $upc.ToCharArray()
     $checksum = 0
-    
-    for($i=0; $i -lt 11; $i++){
-        $upcDigit = [int]::parse($upcArray[$i])
+
+    for($i=1; $i -lt 12; $i++){
+        $upcDigit = [int]::parse($upcArray[$i-1])
         if($i%2){
             #odd digits, multiply by 3
             $upcDigit = $upcDigit*=3
