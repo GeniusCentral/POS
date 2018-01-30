@@ -11,7 +11,7 @@ Param(
 
 Try{
     $header = @{"Authorization" = "Bearer $accessToken"; "Accept" = "application/json"; "Content-Type" = "application/json"}
-    $uri = $posAPIUri +  "catalogs/" + $vendorId + "/updatesSince/" + $updatesSinceDate;
+    $uri = $posAPIUri +  "catalogs/" + $vendorId + "/updates?since=" + $updatesSinceDate;
     $message = "Accessing API - " + $uri
     Add-content $logFile $message
     if($outputToConsole) {
