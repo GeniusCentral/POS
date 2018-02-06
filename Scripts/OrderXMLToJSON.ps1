@@ -2,7 +2,8 @@ Param(
   [string]$sourceOrderXmlFilePath,
   [string]$destinationPath,
   [string]$logFile,
-  [bool]$outputToConsole
+  [bool]$outputToConsole,
+  [bool]$createUniqueOrderID
 )
 
 
@@ -18,10 +19,17 @@ Try{
 
     $orderHeader = $orderXml.Envelope.Body.ProcessOrder.sOrderXmlDoc.OrderHeader;
 
+    if ($createUniqueOrderID){
+        $uniqueOrderID = [guid]::NewGuid().guid
+    }
+    else{
+        $uniqueOrderID  =  $orderHeader.UniqueOrderID
+    }
+
     $headerHash = @{
         StoreID = $orderHeader.StoreID;
         StoreName = $orderHeader.StoreName;
-        UniqueOrderID = $orderHeader.UniqueOrderID;
+        UniqueOrderID = $uniqueOrderID;
         DateCreated = $orderHeader.DateCreated;
         SupplierID = $orderHeader.SupplierID;
         SupplierName = $orderHeader.SupplierName;

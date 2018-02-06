@@ -17,5 +17,6 @@
   "catalogsRetrievedPath": "CatalogsRetrieved\\",
   "useStoreMap": false,
   "OrderExportFileType": "delimited",
-  "delimiter": "|"
+  "delimiter": "|",
+  "createUniqueOrderID": true
 }

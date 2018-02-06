@@ -51,7 +51,7 @@ Try{
                 Write-Host $message
             }
 
-            $jsonFile = .\scripts\OrderXMLToJSON.ps1 $_.FullName $config.originJSONPath $logFile $config.outputToConsole $config.useStoreMap $storeMap
+            $jsonFile = .\scripts\OrderXMLToJSON.ps1 $_.FullName $config.originJSONPath $logFile $config.outputToConsole $config.createUniqueOrderID
 
             If ($jsonFile){
                 #Post Order to API
