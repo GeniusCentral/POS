@@ -77,7 +77,7 @@ Try{
         Write-Host $message
     }
 
-    ConvertTo-Json -InputObject $orderHash | Out-File $jsonOutFilePath  -ErrorAction Stop
+    ConvertTo-Json -InputObject $orderHash | Out-File -Encoding ASCII $jsonOutFilePath  -ErrorAction Stop
     return $jsonOutFilePath
 
 }
