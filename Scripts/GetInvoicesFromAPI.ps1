@@ -28,7 +28,7 @@ Try{
     If($result.invoices.length -gt 0){
         $fileName = New-Guid
         $pathFile = $invoiceHistoryPath + $fileName + ".json"
-        $result.invoices | ConvertTo-Json | Out-File $pathFile -ErrorAction Stop
+        $result.invoices | ConvertTo-Json -Depth 4 | Out-File $pathFile -ErrorAction Stop
         $message = "Writing Downloaded Invoices to File: " + $pathFile
         Add-content $logFile $message
     }
