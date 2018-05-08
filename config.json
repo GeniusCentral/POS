@@ -5,7 +5,7 @@
   "clientSecret": "4F35C24A-32CD-43E3-B9E8-E2A7CE995945",
   "storeId": 100331,
   "identityAPIUri": "https://idsrv.dev.geniuscentral.com/connect/token",
-  "orderingAPIUri": "https://orderingapi.dev.geniuscentral.com/",
+  "orderingAPIUri": "https://posapi.dev.geniuscentral.com/",
   "posAPIUri": "https://posapi.dev.geniuscentral.com/",
   "originXMLPath": "OriginXML\\",
   "originJSONPath": "OriginJSON\\",
