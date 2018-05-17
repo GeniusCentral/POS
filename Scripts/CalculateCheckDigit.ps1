@@ -2,23 +2,28 @@ Param(
     [string]$upc
 )
 
-if ($upc.length -eq 11)
+$upcLength = $upc.length
+
+if ($upcLength -eq 12)
+{
+    $useEvenDigit = 1
+}
+else{
+    $useEvenDigit = 0
+}
+
+if ($upcLength -lt 14)
 {
     $upcArray = $upc.ToCharArray()
     $checksum = 0
 
-    for($i=1; $i -lt 12; $i++){
-        $upcDigit = [int]::parse($upcArray[$i-1])
-        if($i%2){
-            #odd digits, multiply by 3
+    for($i=0; $i -lt $upcLength; $i++){
+        $upcDigit = [int]::parse($upcArray[$i])
+        if($i%2 -eq $useEvenDigit){
             $upcDigit = $upcDigit*=3
         }
-
         $checksum+=$upcDigit
     }
-
-
-    Write-Host $checksum
 
     #calculate the check digit
     $checkdigit=(10-($checksum%10))
@@ -26,7 +31,10 @@ if ($upc.length -eq 11)
     if ($checkdigit -eq 10){
         $checkdigit = 0
     }
-        #Add EAN with check digit to output file
+
+    #Add check digit to EAN
     $upc = $upc + $checkdigit
+
 }
+
 return $upc
