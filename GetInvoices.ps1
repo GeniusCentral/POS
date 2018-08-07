@@ -41,7 +41,7 @@ Try{
             $invoiceAcks.invoices =$invoices
             $invoiceAcks = ConvertTo-Json -InputObject $invoiceAcks
             #Acknowledge Invoice with the API
-            .\scripts\PatchInvoiceAcknowledgement.ps1 $accessToken $config.orderingAPIUri $logFile $invoiceAcks $config.debug
+            .\scripts\PatchInvoiceAcknowledgement.ps1 $accessToken $config.orderingAPIUri $logFile $invoiceAcks $config.storeId  $config.debug
         }
 
     }
