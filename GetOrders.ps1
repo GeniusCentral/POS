@@ -1,5 +1,7 @@
 Clear-Host
 
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType] 'Tls12'
+
 #Read in Configuration file
 $config = Get-Content -Raw -Path "config.json" | ConvertFrom-Json
 

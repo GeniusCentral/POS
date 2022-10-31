@@ -4,6 +4,8 @@ Param(
 
 Clear-Host
 
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType] 'Tls12'
+
 [System.Object] $storeMap;
 
 #Read in configuration file
